@@ -1,1 +1,3 @@
 # py-common-library
+
+Common Library to store common Objects, Functions, Exceptions...
