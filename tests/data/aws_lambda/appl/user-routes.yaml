@@ -1,0 +1,16 @@
+---
+schema-version: "1.0"
+desc: "Routes for the API"
+routes:
+  - path: profile
+    properties:
+      - function: src.routes.users.get_profile
+        method: [GET]
+      - function: src.routes.users.update_profile
+        method: [PUT]
+  - path: settings
+    properties:
+      - function: src.routes.users.get_settings
+        method: [GET]
+      - function: src.routes.users.update_settings
+        method: [PUT]

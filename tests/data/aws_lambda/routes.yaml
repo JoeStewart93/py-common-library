@@ -1,0 +1,44 @@
+---
+schema-version: "1.0"
+desc: "Routes for the API"
+routes:
+  - path: authenticate
+    properties:
+      - function: src.routes.authenticate.do_authenticate
+        method: [POST, PUT]
+      - function: src.routes.authenticate.get_authenticated_status
+        method: [GET]
+
+  - path: users
+    ref: ../../data/aws_lambda/appl/user-routes.yaml
+
+
+  - path: groups
+    properties:
+      - function: src.routes.groups.get_all_groups
+        method: [GET]
+      - function: src.routes.groups.create_groups
+        method: [POST]
+
+        routes:
+        - path: {id}
+          properties:
+          - function: src.routes.group.get_group
+            method: [GET]
+
+
+  - path: group/{id}
+    properties:
+      - function: src.routes.group.get_group
+        method: [GET]
+      - function: src.routes.groups.update_group
+        method: [PUT]
+      - function: src.routes.groups.delete_group
+        method: [DELETE]
+
+  - path: groups/{id}/users
+    properties:
+      - function: src.routes.groups.get_group_users
+        method: [GET]
+      - function: src.routes.groups.add_group_user
+        method: [POST]
